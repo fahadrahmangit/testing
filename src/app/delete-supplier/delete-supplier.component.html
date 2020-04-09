@@ -1,0 +1,57 @@
+<button class="btn btn-light" routerLink="/suppliertab">Back</button>
+<div class="card">
+  <div class="card-body">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1>Delete By Supplier</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Supplier</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="getSupplier($event)" >
+          <option value="null">Select Supplier</option>
+          <option *ngFor="let item of supplierList" value="{{item.id}}">{{item.name}}</option>
+         </select>
+        </div>
+      </div>
+
+      <div *ngIf="display" class="row">
+        <button class="btn btn-danger" type="submit" (click)="deleteProducts()">Confirm</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="displayTable">
+  <div class="card-body">
+
+    <div class="container-fluid">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <!-- <th>Image</th> -->
+            <th>Price</th>
+            <th>Distance</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productList">
+            <td scope="row">{{item.name}}</td>
+            <!-- <td><img src="{{item.imageLink}}"></td> -->
+            <td>{{item.price}}</td>
+            <td>{{item.distance}}</td>
+            <td>{{item.position}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<button class="btn btn-light" routerLink="/suppliertab">Back</button>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1>Add Supplier</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Category</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="getSubCategory($event)" >
+          <option value="null">Select Category</option>
+          <option value="1001">Wellness</option>
+          <option value="1003">Electronics</option>
+          <option value="1014">Fahad Category</option>
+         </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >SubCategory</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="getSupplier($event)" >
+          <option value="null">Select SubCategory</option>
+          <option *ngFor="let item of subCategoryList" value="{{item.id}}">{{item.name}}</option>
+         </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Supplier</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="getVendorBrand($event)" >
+          <option value="null">Select Supplier</option>
+          <option *ngFor="let supplier of supplierList"  value="{{supplier.id}}">{{supplier.name}}</option>
+         </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Brand</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="setBrand($event)" >
+          <option value="null">Select Brand</option>
+          <option *ngFor="let brand of brandList"  value="{{brand.id}}">{{brand.name}}</option>
+         </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Vendor</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="setVendor($event)" >
+          <option value="null">Select Vendor</option>
+          <option *ngFor="let vendor of vendorList"  value="{{vendor.id}}">{{vendor.name}}</option>
+         </select>
+        </div>
+      </div>
+      <div *ngIf="display" class="row">
+        <button class="btn btn-danger" type="submit" (click)="getProducts()">Get Product</button>
+      </div>
+      <div *ngIf="displayAdd" class="row">
+          <button class="btn btn-danger" type="submit" (click)="addProducts()">Add Product</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="card" *ngIf="displayTable">
+  <div class="card-body">
+
+    <div class="container-fluid">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Name</th>
+            <!-- <th>Image</th> -->
+            <th>Brand</th>
+            <th>SubCategory</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          <tr *ngFor="let item of productFromExcelDtos">
+            <td><input type="checkbox"   (change)="toggleVisibility($event)" value="{{item.id}}"></td>
+            <td scope="row">{{item.name}}</td>
+            <!-- <td><img src="{{item.imageLink}}"></td> -->
+            <td>{{item.brandName}}</td>
+            <td>{{item.subCategoryName}}</td>
+            <td>{{item.price}}</td>
+          </tr>         
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+

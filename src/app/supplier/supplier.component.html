@@ -1,0 +1,85 @@
+
+
+<div class="row">
+
+<a routerLink="/suppliertab" id="b1"class="btn btn-info "> Back
+</a>
+<h3 id="h3">Suppliers</h3>
+<button type="button" id="b2" class="btn btn-primary btn-lg float-right" (click)="createsupplier()">Create</button>
+</div>
+<div *ngIf="showtable">
+  <br>
+
+<table id=t1 >
+  <th>Name</th>
+  <th>Address</th>
+
+  <th>Action</th>
+
+  <tr id="h1" *ngFor='let supplier of suppliers'>
+    <td>{{supplier.name}}</td>
+    <td>{{supplier.address}}</td>
+    <td><button id="b3" (click)="editsupplier(supplier.id)">Edit</button><Button id="b3" (click)="deletesupplier(supplier.id)">Delete</Button><button id="b3" (click)= "showbrandss(supplier.id)">Brand</button></td>
+     </tr>
+
+
+
+</table>
+</div>
+<div id="s2" *ngIf="showbrands">
+  <form (ngSubmit)="editPartyRolesSubmit()">
+    <div *ngFor="let item of brands">
+        <label>
+        <input type="checkbox" value="{{item.id}}"
+               [checked]="item.checked"
+               (change)="item.checked = !item.checked" />
+        <span innerHTML="{{item.name}}"></span>
+       </label>
+    </div>
+    <button >Submit</button>
+</form>
+
+</div>
+
+<div id="s1" *ngIf="showcreatesupplier">
+  <br>
+
+<form #supplierform="ngForm" (ngSubmit)="onSubmit(supplierform)">
+  <table id=t2>
+<tr><td>Name:</td><td>&nbsp;&nbsp;<input type="text" name="suppliername" ngModel></td></tr>
+<tr><td>Address:</td><td>&nbsp;&nbsp;<input type="text" name="supplieraddress" ngModel></td></tr>
+<tr><td>Phone:</td><td>&nbsp;&nbsp;<input type="text" name="supplierphone" ngModel></td></tr>
+
+  <tr><td>Category</td><td>
+<select  (change)="selectcategory($event)" >
+  <option>Category </option>
+  <option  value="1001">Wellness </option>
+  <option  value="1003">Electronics </option>
+  <option  value="1014">Fahad_category </option>
+</select></td></tr>
+<tr><td>Subcategory</td><td>
+<select (change)="getsubcategory($event)" >
+  <option>Subcategory</option>
+  <option *ngFor="let subcategory of items" value="{{subcategory.id}}">{{subcategory.name}} </option>
+ </select></td></tr>
+ <tr>
+   <br>
+<button type="submit" id="b" class="btn-primary">Submit</button></tr>
+</table>
+</form>
+</div>
+
+<div id="s1" *ngIf="showeditsupplier">
+  <br>
+
+<form #supplierform="ngForm" (ngSubmit)="editsupplierform(supplierform)">
+  <table>
+    <tr><td>Name:</td><td><input type="text" name="suppliername" ngModel></td></tr>
+    <tr><td>Address:</td><td><input type="text" name="supplieraddress" ngModel></td></tr>
+<br>
+<button id="b" type="submit" class="btn-primary">Submit</button>
+</table>
+</form>
+</div>
+
+

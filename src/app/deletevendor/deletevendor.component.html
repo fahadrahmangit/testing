@@ -1,0 +1,41 @@
+<button class="btn btn-light" routerLink="/vendortab">Back</button>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1>Delete Vendor</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Category</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="getVendor($event)" >
+          <option value="" disabled>Select Categoy</option>
+          <option value="1001">Wellness</option>
+          <option value="1003">Electronics</option>
+          <option value="1014">Fahad Category</option>
+         </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4" >Vendor</div>
+        <div class="col-sm-6" >
+         <select class="form-control" (change)="confirmation($event)" >
+          <option value="null">Select Vendor</option>
+          <option *ngFor="let item of vendorList" value="{{item.id}}">{{item.name}}</option>
+         </select>
+        </div>
+      </div>
+
+      <div *ngIf="display" class="row">
+        <label>Are you want to remove product of {{vendorName}} Vendor ?</label>
+
+        <button class="btn btn-danger" type="submit" (click)="deleteProducts()">Confirm</button>
+      </div>
+
+    </div>
+  </div>
+</div>

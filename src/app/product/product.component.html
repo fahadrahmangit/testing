@@ -1,0 +1,60 @@
+
+
+<div class="row">
+
+  <a routerLink="/producttab" id="b1"class="btn btn-info "> Back
+  </a>
+  <h3 id="h3">Product</h3>
+  <button type="button" id="b2" class="btn btn-primary btn-lg float-right" (click)="createproduct()">Create</button>
+  </div>
+  <div *ngIf="showtable">
+    <br>
+
+  <table id="t1" >
+    <th>Name</th>
+    <th>Price</th>
+    <th>Mrp</th>
+    <tr *ngFor='let product of productfromexceldto'>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.mrp}}</td>
+    </tr>
+  </table>
+  </div>
+
+  <div id="s1" *ngIf="showcreateproduct">
+    <br>
+
+  <form #productform="ngForm" (ngSubmit)="onSubmit(productform)">
+    <table id="t2">
+  <tr><td>Title:</td><td>&nbsp;&nbsp;<input type="text" name="name" ngModel></td></tr>
+  <tr><td>Img_url:</td><td>&nbsp;&nbsp;<input type="text" name="image" ngModel></td></tr>
+    <tr><td> Price:</td><td>&nbsp;&nbsp;<input type="text" name="price" ngModel></td></tr>
+      <tr><td> Mrp:</td><td>&nbsp;&nbsp;<input type="text" name="mrp" ngModel></td></tr>
+      <tr><td>Category&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+  <select  (change)="selectcategory($event)" >
+    <option>Category&nbsp;&nbsp; </option>
+    <option  value="1001">Wellness </option>
+    <option  value="1003">Electronics </option>
+    <option  value="1014">Fahad_Category </option>
+  </select>
+</td></tr>
+<tr><td>Subcategory&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+  <select (change)="getsubcategory($event)" >
+    <option>Subcategory</option>
+    <option *ngFor="let subcategory of items" value="{{subcategory.id}}">{{subcategory.name}} </option>
+   </select>
+   </td></tr>
+   <tr><td>Brand&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+   <select (change)="getbrand($event)" >
+    <option>Brand</option>
+    <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}} </option>
+   </select></td></tr>
+   <tr>
+  <button type="submit" id="b" class="btn-primary">Submit</button></tr>
+</table>
+  </form>
+  </div>
+
+
+

@@ -1,0 +1,32 @@
+<!-- <div class="tab">
+  <button class="tablinks" routerLink="/recommendation">Recommendation</button>
+  <button class="tablinks" routerLink="/addbrand">Add By Brand</button>
+  <button class="tablinks" routerLink="/deletebrand">Delete By Brand</button>
+  <button class="tablinks" routerLink="/addsubcategory">Add By Subcategory</button>
+  <button class="tablinks" routerLink="/deletesubcategory">Delete By Subcategory</button>
+  <button class="tablinks" routerLink="/addsupplier">Add By Supplier</button>
+  <button class="tablinks" routerLink="/deletesupplier">Delete By Supplier</button>
+  <button class="tablinks" routerLink="/addvendor">Add By Vendor</button>
+  <button class="tablinks" routerLink="/deletevendor">Delete By Vendor</button>
+  <button class="tablinks" routerLink="/supplier">Create Supplier</button>
+  <button class="tablinks" routerLink="/product">Create Product</button>
+</div> -->
+<div>
+<form class="example-form"  (ngSubmit)="getSearchValue()">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Pick one" aria-label="Number" (keyup)="onKey($event)" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete"  >
+      <mat-option *ngFor="let option of options" [value]="option.id" name="option.id">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button type="submit">Search</button>
+</form>
+</div>
+
+<table class="table" *ngIf="tableDisplay">
+<tbody>
+  <tr *ngFor="let reco of recommededProducts"><td>{{reco.name}}</td></tr>
+</tbody>
+</table>
